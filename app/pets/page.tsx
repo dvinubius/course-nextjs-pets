@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import React from 'react'
+import NewPet from './NewPet';
+import { BsTrash } from 'react-icons/bs';
+import DeletePet from './DeletePet';
 
 export interface Pet {
   name: string;
@@ -12,17 +15,23 @@ async function PetsPage() {
 
   return (
     <div className='h-screen flex flex-col gap-8 p-16'>
-      <h1 className='text-2xl text-medium'>My Pets</h1>
-      <ul className='flex flex-col gap-4'>
-        {pets.map((pet) => (
-          <li key={pet.name}>
-            <Link href={`/pets/${pet.name}`} className='flex flex-col gap-2 bg-white p-4 rounded-lg cursor-pointer'>
-              <h2>{pet.name}</h2>
-              <p>{pet.description}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <h1 className='text-2xl font-medium'>My Pets</h1>
+      <div className='flex gap-8 '>
+        <div className='flex-col gap-8 w-[400px]'>
+          <ul className='flex flex-col gap-4'>
+            {pets.map((pet) => (
+              <li key={pet.name} className='flex gap-4 items-center'>
+                <Link href={`/pets/${pet.name}`} className='grow flex flex-col gap-2 bg-white p-4 rounded-lg cursor-pointer'>
+                  <h2>{pet.name}</h2>
+                  <p>{pet.description}</p>
+                </Link>
+                <DeletePet name={pet.name}/>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <NewPet />
+      </div>
     </div>
   )
 }

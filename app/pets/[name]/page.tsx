@@ -1,14 +1,12 @@
 import React from 'react'
-import { Pet } from '../page';
 
 interface PetPageProps {
   params: { name: string }
 }
 
 async function PetPage({params}: PetPageProps) {
-  const fetchedPets = await fetch(`http://localhost:5000/api/v1/pet`).then(res => res.json());
-  const pets = fetchedPets.data;
-  const pet = pets.find((pet: Pet) => pet.name === params.name);
+  const fetchedPet = await fetch(`http://localhost:5000/api/v1/pet/${params.name}`).then(res => res.json());
+  const pet = fetchedPet.data;
 
   if (!pet) {
     return <div className='text-2xl'>
