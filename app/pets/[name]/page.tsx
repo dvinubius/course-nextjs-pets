@@ -1,16 +1,14 @@
 import React from 'react'
-import { pets } from '../page'
+import { Pet } from '../page';
 
 interface PetPageProps {
   params: { name: string }
 }
 
 async function PetPage({params}: PetPageProps) {
-
-  const pet = pets.find(pet => pet.name === params.name);
-  
-  // in a real app, fetch pet data from DB - smth like this:
-  // const pet = await db.getPet({name: params.name});
+  const fetchedPets = await fetch(`http://localhost:5000/api/v1/pet`).then(res => res.json());
+  const pets = fetchedPets.data;
+  const pet = pets.find((pet: Pet) => pet.name === params.name);
 
   if (!pet) {
     return <div className='text-2xl'>

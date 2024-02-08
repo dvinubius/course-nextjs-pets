@@ -6,16 +6,13 @@ export interface Pet {
   description: string;
 }
 
-export const pets: Pet[] = [
-  { name: 'Fluffy', description: 'Fluffy is a very good cat.' },
-  { name: 'Fido', description: 'Fido is a very good dog.' },
-  { name: 'Goldie', description: 'Goldie is a very good fish.' },
-]
+async function PetsPage() {
+  const fetchedPets = await fetch('http://localhost:5000/api/v1/pet').then(res => res.json()); 
+  const pets: Pet[] = fetchedPets.data;
 
-function PetsPage() {
   return (
     <div className='h-screen flex flex-col gap-8 p-16'>
-      <h1>My Pets</h1>
+      <h1 className='text-2xl text-medium'>My Pets</h1>
       <ul className='flex flex-col gap-4'>
         {pets.map((pet) => (
           <li key={pet.name}>
