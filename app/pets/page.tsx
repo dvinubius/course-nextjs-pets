@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import React from 'react'
-import NewPet from './NewPet';
-import { BsTrash } from 'react-icons/bs';
-import DeletePet from './DeletePet';
+import NewPet from './components/NewPet';
+// import NewPet from './components/NewPetControlled';
+// import NewPet from './components/NewPetServerAction';
+// import NewPet from './components/NewPetRouteHandler';
+
+// import DeletePet from './components/DeletePet';
+import DeletePet from './components/DeletePetRouteHandler';
 
 export interface Pet {
   name: string;

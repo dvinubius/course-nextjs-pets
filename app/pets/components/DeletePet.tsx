@@ -8,6 +8,7 @@ function DeletePet({name}: {name: string}) {
     const resp = await fetch(`http://localhost:5000/api/v1/pet/${name}`, {
       method: 'DELETE'
     });
+    console.log(resp);
   }
   return (
     <BsTrash className='text-2xl cursor-pointer' onClick={() => handleDelete(name)}/>
