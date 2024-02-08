@@ -1,24 +1,13 @@
 'use client'
 
 import React from 'react'
+import { createPet } from '../actions/actions'
 
 function NewPet() {
-  const handleSubmit = async (e: any) => {
-    const payload = {
-      name: e.target.name.value,
-      description: e.target.description.value
-    };
-    const resp = await fetch('http://localhost:5000/api/v1/pet', {
-      method: 'POST', 
-      body: JSON.stringify(payload),
-      headers: {'Content-Type': 'application/json'}
-    }) 
-    e.preventDefault();
-  }
 
   return (
     <form className='h-[400px] w-[400px] flex flex-col gap-8 p-8 bg-white rounded-lg shadow-md'
-      onSubmit={handleSubmit}
+      action={createPet}
     >
       <h1 className='text-xl font-medium'>Add a new pet</h1>
 
