@@ -15,7 +15,7 @@ export const pets: Pet[] = [
 function PetsPage() {
   return (
     <div className='h-screen flex flex-col gap-8 p-16'>
-      <h1>My Pets</h1>
+      <h1 className='text-2xl font-medium'>My Pets</h1>
       <ul className='flex flex-col gap-4'>
         {pets.map((pet) => (
           <li key={pet.name}>
