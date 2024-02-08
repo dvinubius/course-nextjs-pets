@@ -10,7 +10,7 @@ export interface Pet {
 }
 
 async function PetsPage() {
-  const fetchedPets = await fetch('http://localhost:5000/api/v1/pet').then(res => res.json()); 
+  const fetchedPets = await fetch('http://localhost:5000/api/v1/pet', {cache: 'no-store'}).then(res => res.json()); 
   const pets: Pet[] = fetchedPets.data;
 
   return (
