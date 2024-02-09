@@ -1,12 +1,24 @@
 'use client'
 
-import React from 'react'
+import React, { FormEvent } from 'react'
+
+
+interface PetFormElements extends HTMLFormControlsCollection {
+  name: HTMLInputElement;
+  description: HTMLInputElement;
+}
+ 
+export interface PetForm extends HTMLFormElement {
+  readonly elements: PetFormElements;
+}
 
 function NewPet() {
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
 
-  const handleSubmit = async () => {;
+  const handleSubmit = async (e: FormEvent<PetForm>) => {;
+    e.preventDefault(); // prevent page reload
+
     const payload = {
       name, 
       description, 
@@ -19,7 +31,7 @@ function NewPet() {
   }
 
   return (
-    <form className='h-[400px] w-[400px] flex flex-col gap-8 p-8 bg-white rounded-lg shadow-md'>
+    <form onSubmit={handleSubmit} className='h-[400px] w-[400px] flex flex-col gap-8 p-8 bg-white rounded-lg shadow-md'>
       <h1 className='text-xl font-medium'>Add a new pet</h1>
 
       <input type='text' name='name' 
@@ -33,7 +45,7 @@ function NewPet() {
         placeholder='Description' className='p-4 outline outline-gray-200 rounded-md bg-gray-50'
       />
 
-      <button onClick={handleSubmit} className='mt-auto py-4 px-8 border-none rounded-md
+      <button type='submit' className='mt-auto py-4 px-8 border-none rounded-md
           bg-[linear-gradient(30deg,_#d4c_0%,_#d4c_20%,_#a8f_80%,_#a8f_100%)]
           text-white text-lg font-bold cursor-pointer
           transition-all duration-150
