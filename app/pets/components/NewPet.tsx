@@ -15,7 +15,7 @@ export interface PetForm extends HTMLFormElement {
 function NewPet() {
 
   // const handleSubmit = async (e: any) => {
-  //   e.preventDefault();
+  //   e.preventDefault(); // prevent page reload
   //
   //   const payload = {
   //     name: e.target.name.value,
@@ -29,7 +29,7 @@ function NewPet() {
   // }
 
   const handleSubmit = async (e: FormEvent<PetForm>) => {
-    e.preventDefault(); // optional
+    e.preventDefault(); // prevent page reload
 
     const elements = e.currentTarget.elements;
     const payload = {

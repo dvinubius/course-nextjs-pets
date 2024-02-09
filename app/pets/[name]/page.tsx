@@ -5,7 +5,7 @@ interface PetPageProps {
 }
 
 async function PetPage({params}: PetPageProps) {
-  const fetchedPet = await fetch(`http://localhost:5000/api/v1/pet/${params.name}`).then(res => res.json());
+  const fetchedPet = await fetch(`http://localhost:5000/api/v1/pet/${params.name}`, {cache: 'no-store'}).then(res => res.json());
   const pet = fetchedPet.data;
 
   if (!pet) {
