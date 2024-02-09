@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation';
 import React, { FormEvent } from 'react'
 
 
@@ -28,6 +29,8 @@ function NewPet() {
   //   }) 
   // }
 
+  const router = useRouter();
+
   const handleSubmit = async (e: FormEvent<PetForm>) => {
     e.preventDefault(); // prevent page reload
 
@@ -41,6 +44,8 @@ function NewPet() {
       body: JSON.stringify(payload),
       headers: {'Content-Type': 'application/json'}
     }) 
+
+    router.refresh();
   }
 
   return (

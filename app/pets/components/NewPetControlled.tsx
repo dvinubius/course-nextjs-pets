@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation';
 import React, { FormEvent } from 'react'
 
 
@@ -13,6 +14,8 @@ export interface PetForm extends HTMLFormElement {
 }
 
 function NewPet() {
+  const router = useRouter();
+
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
 
@@ -27,7 +30,9 @@ function NewPet() {
       method: 'POST', 
       body: JSON.stringify(payload),
       headers: {'Content-Type': 'application/json'}
-    }) 
+    });
+
+    router.refresh();
   }
 
   return (
