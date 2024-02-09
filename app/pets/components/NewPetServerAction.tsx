@@ -2,11 +2,16 @@
 
 import React from 'react'
 import { createPet } from '../actions/actions'
+import { useRouter } from 'next/navigation';
 
 function NewPet() {
+  const router = useRouter();
   return (
     <form className='h-[400px] w-[400px] flex flex-col gap-8 p-8 bg-white rounded-lg shadow-md'
-      action={createPet}
+      action={async FormData => {
+        await createPet(FormData);
+        router.refresh();
+      }}
     >
       <h1 className='text-xl font-medium'>Add a new pet</h1>
 

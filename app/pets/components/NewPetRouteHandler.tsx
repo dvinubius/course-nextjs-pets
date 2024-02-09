@@ -1,8 +1,11 @@
 'use client'
 
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
 function NewPet() {
+  const router = useRouter();
+
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
 
@@ -16,6 +19,7 @@ function NewPet() {
       body: JSON.stringify(payload),
       headers: {'Content-Type': 'application/json'}
     }); 
+    router.refresh();
   }
 
   return (
