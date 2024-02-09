@@ -29,7 +29,7 @@ function NewPet() {
   // }
 
   const handleSubmit = async (e: FormEvent<PetForm>) => {
-    e.preventDefault(); // optional
+    e.preventDefault(); // prevent page reload
 
     const elements = e.currentTarget.elements;
     const payload = {
